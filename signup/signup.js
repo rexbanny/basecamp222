@@ -6,6 +6,7 @@ function cfn() {
   const error = document.getElementById("error");
   let password = document.getElementById("password").value;
   let password_cfn = document.getElementById("password-cfn").value;
+  let name = document.getElementById("name").value;
   error.textContent = "";
 
   const emailerror = document.getElementById("error");
@@ -13,6 +14,10 @@ function cfn() {
   emailerror.textContent = "";
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(name.length <= 0){
+    emailerror.textContent = "you must fill all of them";
+    return;
+  }
 
   if (email.trim() === "") {
     emailerror.textContent = "email can't be empty";
