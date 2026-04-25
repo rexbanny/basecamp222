@@ -46,7 +46,23 @@ function cfn() {
     return;
   }
   else {
-    window.location.href = "../login/login.html";
+    fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: {"Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password }),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.error) {
+        error.textContent = data.error;
+      } else {
+        window.location.href = "../login/login.html";
+      }
+    })
+    .catch(() => {
+      error.textContent = "An error occurred. Please try again.";
+    });
   }
 }
 
