@@ -45,6 +45,9 @@ function cfn() {
     error.textContent = "Password include least one number";
     return;
   }
+  else {
+    window.location.href = "../login/login.html";
+  }
 }
 
 sbt_button.addEventListener("click", cfn);
