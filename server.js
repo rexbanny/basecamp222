@@ -31,6 +31,26 @@ app.post('/register', async (req, res) => {
     }
 });
 
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Email and password are required' });
+    }
+
+    const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+    if (!user) {
+        return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+        return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    res.status(200).json({ message: 'Login successful', name: user.name });
+});
+
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');
 });

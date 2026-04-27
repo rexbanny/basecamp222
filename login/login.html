@@ -10,14 +10,15 @@
       <h1>Log In</h1>
       <div class="input-group">
         <label>Mail:</label>
-        <input type="email" />
+        <input type="email" id="email" name="email" required/>
       </div>
 
       <div class="input-group">
         <label>Password</label>
-        <input type="password" />
+        <input type="password" id="password" name="password" required/>
       </div>
 
+      <span id="error" style="color: red; font-size: 14px"></span>
       <button id="sbt-button">Submit</button>
 
       <div class="button-link">
@@ -27,5 +28,6 @@
         <a href="..//main_menu/projects.html">test</a>
       </div>
     </div>
+    <script src="login.js"></script>
   </body>
 </html>
